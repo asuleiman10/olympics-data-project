@@ -47,11 +47,22 @@ def load_data():
     data = {}
     for f in files:
         try:
-            data[f.split('.')[0]] = pd.read_csv(f)
+            df = pd.read_csv(f)
+
+            # Skip empty CSVs
+            if df.empty:
+                print(f"⚠️ {f} is empty — skipped.")
+                continue
+
+            data[f.split('.')[0]] = df
             print(f"Loaded {f}")
+
         except FileNotFoundError:
             print(f"⚠️ Missing file: {f}")
+        except pd.errors.EmptyDataError:
+            print(f"⚠️ {f} has no data — skipped.")
     return data
+
 
 
 def clean_data(df, cols):
