@@ -1,60 +1,73 @@
-# Olympics Data Project – Milestone 1  
+# Olympics Data Project – Milestone 1 & 2
+
 **Course:** Data Structures and Algorithms  
-**Group:** 10  
+**Group:** 3 
 
-**Members:**  
-- Ashish Dilipbhai Solanki  
-- Angel Suleiman  
-- Josclif Taah  
-
----
-
-## 🏁 Project Overview
-This project focuses on organizing and cleaning Olympic data files in preparation for analysis.  
-In **Milestone 1**, our group focused on:
-- Setting up the project repository  
-- Understanding the dataset and identifying potential issues  
-- Creating a working prototype that generates all required output files  
-
-This milestone serves as a check-in to confirm that our group has started, divided tasks, and understands the problem requirements before deeper data processing in later stages.
+### 👥 Members
+- **Ashish Dilipbhai Solanki** – Medal Tally Calculation  
+- **Angel Suleiman** – Data Cleaning & Integration  
+- **Josclif Taah** – Games & Country Data Modules  
 
 ---
 
-## 🧠 Milestone 1 Deliverables
+## 🧩 Project Overview
+This project focuses on organizing, cleaning, and analyzing Olympic datasets in preparation for statistical analysis.  
+
+In **Milestone 1**, our goal was to build a simple prototype that created CSV output files with the correct structure.  
+In **Milestone 2**, we upgraded the prototype into a fully functional data-processing program that merges, cleans, and analyzes real Olympic and Paris 2024 data.
+
+---
+
+## 🥇 Milestone 1 Summary
+### Objectives:
+- Set up the project repository and test version control.  
+- Understand the dataset and identify missing or inconsistent entries.  
+- Create a basic prototype that generates the required CSV output structure.  
+
+### Outputs:
+- Generated 5 empty CSV placeholders (`new_*.csv` files).  
+- Verified all file headers matched project requirements.  
+
+---
+
+## 🏆 Milestone 2 Summary
+### Objectives:
+- Integrate and clean Paris 2024 datasets (`paris_athletes.csv`, `paris_events.csv`, `paris_medallists.csv`).  
+- Merge Paris data with previous Olympic datasets.  
+- Handle missing and duplicate entries using Pandas.  
+- Generate a final medal tally file summarizing all results.  
+
+### Features Implemented:
+- Data cleaning (removal of missing/duplicate values, lowercase formatting).  
+- CSV validation and handling of empty files using `try–except`.  
+- Runtime tracking using Python’s `time` module.  
+- Merging datasets with `pandas.concat()` for performance.  
+- Medal tally generation grouped by NOC and medal type.  
+
+### Program Output:
+- ✅ `final_medal_tally.csv` successfully created  
+- ✅ Total runtime: **≈ 0.03 seconds**
+
+---
+
+## 📂 Project Files
 | File | Description |
 |------|--------------|
-| `project.py` | Prototype program that generates 5 new CSV files with correct headers |
-| `tasks.md` | Group 10 member roles and assigned tasks |
-| `prompts.md` | Record of learning resources consulted during development |
-| `ms1_prob_id.md` | Problem identification – documents unknown data, handling plan, and validation strategy |
-| `new_olympic_athlete_bio.csv` | Placeholder bio file (same as original structure) |
-| `new_olympic_athlete_event_results.csv` | Event results file with added “age” column |
-| `new_olympics_country.csv` | Placeholder for country data |
-| `new_olympics_games.csv` | Placeholder for games data |
-| `new_medal_tally.csv` | Output file with required header fields |
+| `project.py` | Main Python program (data cleaning, merging, medal tally) |
+| `ms2-analysis.md` | Individual analysis (Angel Suleiman) |
+| `prompts.md` | Resource & AI usage log for all members |
+| `tasks.md` | Group task tracking and responsibilities |
+| `new_*.csv` | Placeholder CSVs created during Milestone 1 |
+| `paris_*.csv` | Paris 2024 dataset samples used for Milestone 2 |
 
 ---
 
-## ⚙️ How to Run the Prototype
-1. Clone this repository  
-   ```bash
-   git clone https://github.com/asuleiman10/olympics-data-project.git
-   cd olympics-data-project
-2. python3 project.py
+## 🧠 Notes
+- Each group member contributed through commits to the shared repository.  
+- All analysis, code, and documentation were verified locally before committing.  
+- The project was designed to maintain data consistency, handle large files, and meet runtime requirements (< 50 seconds per GitHub Actions policy).
 
-3. Confirm that all 5 CSV files are generated in the project folder.
+---
 
-Next Steps (Milestone 2)
-
-Clean and normalize Paris dataset
-
-Handle missing and inconsistent values
-
-Merge athlete, country, and medal data into unified structures
-
-Implement calculations for medal tallies and summaries
-
-Notes
-
-This repository follows the guidelines outlined in the course instructions.
-All work was completed collaboratively by Group 10 using approved resources such as course videos, official documentation, and peer discussion.
+📅 **Final Submission Date:** December 1, 2025  
+💻 **Repository:** [asuleiman10 / olympics-data-project](https://github.com/asuleiman10/olympics-data-project)
