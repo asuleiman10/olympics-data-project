@@ -1,6 +1,6 @@
 # Milestone 2 – Olympics Data Project  
 **Name:** Angel Suleiman  
-**Group:** 10 
+**Group:** 3
 **Date:** November 2025  
 
 ---
