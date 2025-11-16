@@ -46,16 +46,17 @@ def load_data():
     ]
 
     data = {}
- HEAD
     for f in files:
         try:
+            # Try reading the file
             df = pd.read_csv(f)
 
-            # Skip empty CSVs
+            # Skip completely empty CSVs
             if df.empty:
                 print(f"⚠️ {f} is empty — skipped.")
                 continue
 
+            # Store loaded DataFrame
             data[f.split('.')[0]] = df
             print(f"Loaded {f}")
 
@@ -64,28 +65,6 @@ def load_data():
         except pd.errors.EmptyDataError:
             print(f"⚠️ {f} has no data — skipped.")
     return data
-
-for f in files:
-    try:
-        # Try reading the file
-        df = pd.read_csv(f)
-
-        # Skip completely empty CSVs
-        if df.empty:
-            print(f"⚠️ {f} is empty — skipped.")
-            continue
-
-        # Store loaded DataFrame
-        data[f.split('.')[0]] = df
-        print(f"Loaded {f}")
-
-    except FileNotFoundError:
-        print(f"⚠️ Missing file: {f}")
-    except pd.errors.EmptyDataError:
-        print(f"⚠️ {f} has no data — skipped.")
-return data
-
- d36c36e4fd1d2ee6c8e1af8a71e5b8d0daa7a6c3
 
 
 
