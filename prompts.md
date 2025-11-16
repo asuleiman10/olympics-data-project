@@ -1,4 +1,4 @@
-# External Resource Tracking – Group 10  
+# External Resource Tracking – Group 3  
 
 This file tracks any learning resources or materials used by each member of Group 10 for Milestone 1.  
 
@@ -31,4 +31,5 @@ This file tracks any learning resources or materials used by each member of Grou
 - Each member lists only learning or documentation resources they personally used.  
 - Avoid including AI or automation tools unless explicitly requested.  
 - Keep entries factual, brief, and professional.
+
 
