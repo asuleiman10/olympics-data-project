@@ -106,15 +106,57 @@ def load_event_results(event_files):
 
 
 
-def generate_medal_tally(df):
-    """Generate medal summary and export CSV"""
-    if 'noc' not in df.columns or 'medal' not in df.columns:
-        print("⚠️ Medal or NOC column missing.")
-        return
-    tally = df.groupby(['noc', 'medal']).size().unstack(fill_value=0)
-    tally['total'] = tally.sum(axis=1)
-    tally.to_csv("final_medal_tally.csv")
-    print("✅ Saved final_medal_tally.csv")
+def build_medal_tally(events_rows, noc_to_country, games_by_id):
+    """
+    Build medal tally grouped by (edition_id, NOC).
+
+    For each (edition_id, NOC) pair we track:
+      - edition name
+      - country name
+      - set of unique athlete IDs
+      - gold/silver/bronze counts
+    """
+    medal_tally = {}
+
+    for row in events_rows:
+        # Flexible column names in case files differ
+        edition_id = get_first(row, ["edition_id", "Edition_ID", "edition id"])
+        noc = get_first(row, ["NOC", "noc", "Team_NOC"])
+        athlete_id = get_first(row, ["athlete_id", "Athlete_ID"])
+        medal = get_first(row, ["medal", "Medal", "medal_type"])
+
+        if not edition_id or not noc:
+            # Can't group without these
+            continue
+
+        key = (edition_id, noc)
+
+        if key not in medal_tally:
+            medal_tally[key] = {
+                "edition": games_by_id.get(edition_id, ""),
+                "edition_id": edition_id,
+                "Country": noc_to_country.get(noc, ""),
+                "NOC": noc,
+                "athletes": set(),
+                "gold": 0,
+                "silver": 0,
+                "bronze": 0,
+            }
+
+        if athlete_id:
+            medal_tally[key]["athletes"].add(athlete_id)
+
+        m = medal.lower()
+        if m == "gold":
+            medal_tally[key]["gold"] += 1
+        elif m == "silver":
+            medal_tally[key]["silver"] += 1
+        elif m == "bronze":
+            medal_tally[key]["bronze"] += 1
+        # any other medal value (empty, "na", etc.) is ignored
+
+    return medal_tally
+
 
 
 def main():
