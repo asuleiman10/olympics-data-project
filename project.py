@@ -29,7 +29,7 @@ def writeOutputFiles():
 
 # ----------------- MILESTONE 2 STARTS HERE -----------------
 
-import pandas as pd
+import csv
 import time
 
 def load_data():
