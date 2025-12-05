@@ -92,14 +92,18 @@ def load_games(filename):
 
 
 
-def merge_datasets(data):
-    """Merge old and Paris event results"""
-    old_results = data.get("new_olympic_athlete_event_results", pd.DataFrame())
-    paris_results = data.get("paris_medallists", pd.DataFrame())
+def load_event_results(event_files):
+    """
+    Load and combine event results from a list of CSV files.
+    Returns one big list of dict rows.
+    """
+    all_rows = []
+    for fn in event_files:
+        rows = read_csv_dicts(fn)
+        all_rows.extend(rows)
+    print(f"✅ Combined event results rows: {len(all_rows)}")
+    return all_rows
 
-    combined = pd.concat([old_results, paris_results], ignore_index=True)
-    print(f"✅ Combined results shape: {combined.shape}")
-    return combined
 
 
 def generate_medal_tally(df):
