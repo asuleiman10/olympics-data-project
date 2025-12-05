@@ -203,33 +203,33 @@ def write_medal_tally(filename, rows):
 
 
 def main():
-    print("🏁 Running Milestone 2 program...\n")
-
+    print("🏁 Running Olympics data project ...\n")
     start = time.time()
 
-    # Step 1: Create initial CSVs (Milestone 1)
+    # Step 1: Milestone 1 – create initial output files & headers
     writeOutputFiles()
 
-    # Step 2: Load data
-    data = load_data()
-    print("Data loading complete.")
+    # Step 2: Load supporting data for countries and games
+    noc_to_country = load_countries("olympics_country.csv")
+    games_by_id = load_games("olympics_games.csv")
 
-    # Step 3: Clean data
-    for key, df in data.items():
-        if not df.empty:
-            data[key] = clean_data(df, df.columns[:2])
-    print("Data cleaning complete.")
+    # Step 3: Load event results (old + Paris)
+    event_files = [
+        "olympic_athlete_event_results.csv",  # main results file
+        "paris_medallists.csv"                # Paris 2024 medals
+    ]
+    events_rows = load_event_results(event_files)
 
-    # Step 4: Merge data
-    merged = merge_datasets(data)
+    # Step 4: Build medal tally (YOUR logic)
+    medal_tally = build_medal_tally(events_rows, noc_to_country, games_by_id)
+    medal_rows = medal_tally_to_rows(medal_tally)
 
-    # Step 5: Medal tally
-    generate_medal_tally(merged)
+    # Step 5: Write new_medal_tally.csv
+    write_medal_tally("new_medal_tally.csv", medal_rows)
 
     total = time.time() - start
     print(f"\n✅ Total runtime: {total:.2f}s")
-    print("🎯 Milestone 2 completed successfully!")
+    print("🎯 Program completed successfully!")
 
 if __name__ == "__main__":
     main()
-
