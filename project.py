@@ -157,6 +157,49 @@ def build_medal_tally(events_rows, noc_to_country, games_by_id):
 
     return medal_tally
 
+def medal_tally_to_rows(medal_tally):
+    """Convert the medal_tally dict into a list of row dicts for CSV writing."""
+    rows = []
+    for (edition_id, noc), info in medal_tally.items():
+        num_athletes = len(info["athletes"])
+        total_medals = info["gold"] + info["silver"] + info["bronze"]
+        row = {
+            "edition": info["edition"],
+            "edition_id": info["edition_id"],
+            "Country": info["Country"],
+            "NOC": info["NOC"],
+            "number_of_athletes": num_athletes,
+            "gold_medal_count": info["gold"],
+            "silver_medal_count": info["silver"],
+            "bronze_medal_count": info["bronze"],
+            "total_medals": total_medals,
+        }
+        rows.append(row)
+
+    # Sort nicely: by edition then NOC
+    rows.sort(key=lambda r: (r["edition_id"], r["NOC"]))
+    return rows
+
+
+def write_medal_tally(filename, rows):
+    """Write new_medal_tally.csv with correct header order."""
+    header = [
+        "edition",
+        "edition_id",
+        "Country",
+        "NOC",
+        "number_of_athletes",
+        "gold_medal_count",
+        "silver_medal_count",
+        "bronze_medal_count",
+        "total_medals",
+    ]
+    with open(filename, "w", newline='', encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=header)
+        writer.writeheader()
+        writer.writerows(rows)
+    print(f"✅ Saved {filename}")
+
 
 
 def main():
