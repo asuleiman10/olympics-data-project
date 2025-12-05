@@ -27,36 +27,67 @@ I used a **dictionary** called `data` to hold all datasets:
 ```python
 data = { "paris_athletes": DataFrame, "paris_events": DataFrame, ... }
 
-## Milestone 2 – Olympics Data Project  
-**Name:** Ashish Dilipbhai Solanki  
-**Group:** 3  
-**Date:** December 05 2025  
 
----
 
-## 1. Assumptions and Decisions
+Name: Ashish Dilipbhai Solanki
+Group: 3
+Date: November 2025
 
-For this milestone, my main task was to implement the medal tally logic and replace the earlier pandas-based version. Since the Milestone 1 files were empty placeholders, I used the Paris medal file (`paris_medallists.csv`) to test the grouping and counting. I also had to handle missing or inconsistent column names, so I checked multiple possible keys like `"NOC"` and `"noc"`.  
-To keep the program stable, I skipped empty CSV files and used only Python’s built-in tools.
+1. Assumptions and Decisions
 
----
+For this milestone, my main task was to implement the medal tally section of the project and update the prototype so it no longer relied on pandas. Since the Milestone 1 files were mostly empty placeholders, I treated them as older Olympic records and used the Paris medal file (paris_medallists.csv) as the main dataset to verify that my logic worked correctly.
 
-## 2. Data Structures Used
+Because some files might be missing or contain no rows, I added conditions to skip empty CSVs to avoid errors. I also wrote helper functions to handle variations in column names (such as "NOC", "noc", or "Team_NOC"), since the datasets did not always follow the same format.
 
-### Dictionary
-I used a **dictionary** called `medal_tally` to store medal information grouped by edition and NOC:
-```python
+To keep the program consistent and within restrictions, I made the following decisions:
+
+Use only Python’s built-in modules (csv, dictionaries, lists, sets).
+
+Group medal results by (edition_id, NOC) using a dictionary.
+
+Track unique athletes with a set so each athlete is counted only once.
+
+Keep the output format identical to the required new_medal_tally.csv.
+
+Convert the final results into a list of dictionaries for writing to the CSV file.
+
+2. Data Structures Used
+Dictionary
+
+I used a dictionary called medal_tally where each key represents a combination of the Olympic edition and the NOC:
+
 key = (edition_id, NOC)
+
+
+Each entry stores:
+
+edition
+
+edition_id
+
+Country
+
+NOC
+
+set of athlete IDs
+
+gold, silver, and bronze medal counts
+
+This allowed medal totals to be updated easily while processing each event row.
+
 Set
 
-I used a set to track unique athlete IDs:
+A set was used to track unique athlete IDs:
 
-athletes.add(athlete_id)
+info["athletes"].add(athlete_id)
+
+
+This ensures that an athlete is not counted multiple times, even if they appear in more than one event.
 
 List of Dictionaries
 
-I converted the final medal results into a list of dictionaries so they could be written to new_medal_tally.csv.
+After completing the medal calculations, I converted the dictionary into a list of row dictionaries so it could be written to new_medal_tally.csv in the correct header order.
 
 Summary
 
-My part of the project focused on building the medal tally system using only csv, lists, dictionaries, and sets. I handled grouping by edition and NOC, counting unique athletes, and generating the final output file.
+My contribution for Milestone 2 was implementing the medal tally system using only core Python features. This included loading the necessary files, organizing medal results, counting athletes and medals, and generating the final output file. My work replaces the earlier pandas-based version and ensures the project follows all required restrictions.
