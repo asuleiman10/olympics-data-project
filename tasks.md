@@ -6,7 +6,7 @@
 ## 🧑‍💻 Team Members
 | Name | GitHub Username | Role |
 |------|------------------|------|
-| Ashish Dilipbhai Solanki | *(Add GitHub username)* | Developer / Data Processing |
+| Ashish Dilipbhai Solanki | *asolanki2000* | Developer / Data Processing |
 | Angel Suleiman | @asuleiman10 | Lead Developer / Documentation |
 | Josclif Taah | @josclifTaah | Developer / Testing |
 
@@ -34,4 +34,5 @@
 - All members will contribute commits to the repo for both programming and analysis tasks in MS2.  
 - Each member is responsible for maintaining their own AI prompt log in `prompts.md`.  
 - Group 10 is aligned and communicating via Blackboard group tools.  
+
 
