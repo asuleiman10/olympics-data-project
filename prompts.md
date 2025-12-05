@@ -14,7 +14,7 @@ This file tracks any learning resources or materials used by each member of Grou
 | 2025-11-08 | GitHub Docs | Reviewed merge conflict resolution | `project.py` | Fixed HEAD markers manually and committed resolved version |
 
 
-## 👨‍💻 Ashish Dilipbhai Solanki  
+## 👨‍💻 Ashish Dilipbhai Solanki  (asolanki2000)
 | Date | Resource | Purpose | Output Used | Notes |
 |------|-----------|----------|--------------|-------|
 |  2025-12-05 |ChatGPT  | Asked for clarification the main querry to  | project.py | made its clarification's use in the understanding of the file and made sure to remove panda related code. |
@@ -33,6 +33,7 @@ This file tracks any learning resources or materials used by each member of Grou
 - Each member lists only learning or documentation resources they personally used.  
 - Avoid including AI or automation tools unless explicitly requested.  
 - Keep entries factual, brief, and professional.
+
 
 
 
