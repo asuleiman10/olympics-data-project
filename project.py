@@ -1,5 +1,6 @@
 # Milestone 1 Prototype – Olympics Data Project
-# by Angel Suleiman
+# Angel Suleiman
+# Ashish Solanki
 
 import csv
 
@@ -210,14 +211,14 @@ def main():
     writeOutputFiles()
 
     # Step 2: Load supporting data for countries and games
-    noc_to_country = load_countries("olympics_country.csv")
-    games_by_id = load_games("olympics_games.csv")
+    noc_to_country = load_countries("new_olympics_country.csv")
+    games_by_id = load_games("new_olympics_games.csv")
 
-    # Step 3: Load event results (old + Paris)
     event_files = [
-        "olympic_athlete_event_results.csv",  # main results file
-        "paris_medallists.csv"                # Paris 2024 medals
+        "new_olympic_athlete_event_results.csv",
+        "paris_medallists.csv"
     ]
+
     events_rows = load_event_results(event_files)
 
     # Step 4: Build medal tally (YOUR logic)
