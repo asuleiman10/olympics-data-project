@@ -26,55 +26,70 @@ def writeOutputFiles():
             "number_of_athletes", "gold_medal_count",
             "silver_medal_count", "bronze_medal_count", "total_medals"
         ])
+def read_csv_dicts(filename):
+    """Read a CSV file into a list of dicts. Return [] if missing or empty."""
+    try:
+        with open(filename, newline='', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            rows = list(reader)
+            if not rows:
+                print(f"⚠️ {filename} is empty — skipped.")
+            else:
+                print(f"Loaded {filename} ({len(rows)} rows)")
+            return rows
+    except FileNotFoundError:
+        print(f"⚠️ Missing file: {filename}")
+        return []
+    except Exception as e:
+        print(f"⚠️ Error reading {filename}: {e}")
+        return []
+
+
+def get_first(row, keys):
+    """Return the first non-empty value among the given possible column names."""
+    for k in keys:
+        if k in row:
+            val = str(row[k]).strip()
+            if val:
+                return val
+    return ""
 
 # ----------------- MILESTONE 2 STARTS HERE -----------------
 
 import csv
 import time
 
-def load_data():
-    """Load Olympic and Paris datasets"""
-    files = [
-        "new_olympic_athlete_bio.csv",
-        "new_olympic_athlete_event_results.csv",
-        "new_olympics_country.csv",
-        "new_olympics_games.csv",
-        "new_medal_tally.csv",
-        "paris_athletes.csv",
-        "paris_events.csv",
-        "paris_medallists.csv"
-    ]
-
-    data = {}
-    for f in files:
-        try:
-            # Try reading the file
-            df = pd.read_csv(f)
-
-            # Skip completely empty CSVs
-            if df.empty:
-                print(f"⚠️ {f} is empty — skipped.")
-                continue
-
-            # Store loaded DataFrame
-            data[f.split('.')[0]] = df
-            print(f"Loaded {f}")
-
-        except FileNotFoundError:
-            print(f"⚠️ Missing file: {f}")
-        except pd.errors.EmptyDataError:
-            print(f"⚠️ {f} has no data — skipped.")
-    return data
 
 
+def load_countries(filename):
+    """
+    Load countries from olympics_country.csv
+    into a dict: NOC -> Country name.
+    """
+    rows = read_csv_dicts(filename)
+    noc_to_country = {}
+    for r in rows:
+        noc = get_first(r, ["NOC", "noc"])
+        country = get_first(r, ["Country", "country", "country_name"])
+        if noc:
+            noc_to_country[noc] = country
+    return noc_to_country
 
-def clean_data(df, cols):
-    """Remove missing and duplicate records"""
-    df.dropna(subset=cols, inplace=True)
-    for col in df.select_dtypes(include='object'):
-        df[col] = df[col].astype(str).str.strip().str.lower()
-    df.drop_duplicates(inplace=True)
-    return df
+
+def load_games(filename):
+    """
+    Load games from olympics_games.csv
+    into a dict: edition_id -> edition name.
+    """
+    rows = read_csv_dicts(filename)
+    games_by_id = {}
+    for r in rows:
+        edition_id = get_first(r, ["edition_id", "Edition_ID", "edition id"])
+        edition_name = get_first(r, ["edition", "Edition", "games"])
+        if edition_id:
+            games_by_id[edition_id] = edition_name
+    return games_by_id
+
 
 
 def merge_datasets(data):
