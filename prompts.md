@@ -17,7 +17,9 @@ This file tracks any learning resources or materials used by each member of Grou
 ## 👨‍💻 Ashish Dilipbhai Solanki  
 | Date | Resource | Purpose | Output Used | Notes |
 |------|-----------|----------|--------------|-------|
-| *(Add entries here)* |  |  |  |  |
+|  2025-12-05 |ChatGPT  | Asked for clarification the main querry to  | project.py | made its clarification's use in the understanding of the file and made sure to remove panda related code. |
+| 2025-12-05 | ChatGPT | Asked how to format my Milestone 2 explanation  | ms2-analysis.md | Used as reference, rewrote in my own words  |
+
 
 ---
 
@@ -31,5 +33,6 @@ This file tracks any learning resources or materials used by each member of Grou
 - Each member lists only learning or documentation resources they personally used.  
 - Avoid including AI or automation tools unless explicitly requested.  
 - Keep entries factual, brief, and professional.
+
 
 
